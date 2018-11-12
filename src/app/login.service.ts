@@ -3,21 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { tap, map, catchError, retry } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { User } from './_model/user';
-import { StorageService } from './_service/storage.service';
+//import { StorageService } from './_service/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private http : HttpClient, private storageService : StorageService) { }
+  constructor(private http : HttpClient) { }
   
   login(userName:String, password:String):Observable<any>{
 	return this.http.post<any>('https://pre-api.stafflinepro.com/v5/api/accounts/signin', {userName: userName, password: password})
 		.pipe(tap(user => { 
 			if(user.code == 200)
 			{
-				this.storageService.set('currentUser', user['content']['dataList'][0])
+				//this.storageService.set('currentUser', user['content']['dataList'][0]);
 			}
 			//return user;
 		

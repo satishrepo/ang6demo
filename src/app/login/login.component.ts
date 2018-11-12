@@ -4,6 +4,7 @@ import { LoginService } from '../login.service';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../_service/alert.service';
+import { StorageService } from '../_service/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
 	private loginService : LoginService, 
 	private alertService : AlertService,
+	private storageService : StorageService,
 	private router : Router
 	) { }
   
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
 		.subscribe( user => {
 				if(user.code == 200)
 				{
+					this.storageService.set('currentUser', user['content']['dataList'][0]);
 					this.alertService.success('Login successful', true);
 					this.router.navigate(['dashboard'])
 				}
