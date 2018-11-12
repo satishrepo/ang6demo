@@ -19,7 +19,9 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should get one user', async(() => { console.log('compo',component)
+	fixture = TestBed.createComponent(LoginComponent);
+	component = fixture.debugElement.componentInstance;
+    expect(component.code).toEqual(200);
+  }));
 });

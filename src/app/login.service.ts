@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { tap, map, catchError, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { User } from './_model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +11,14 @@ export class LoginService {
 
   constructor(private http : HttpClient) { }
   
-  login(userName:String, password:String)
-  {
+  login(userName:String, password:String):Observable<any>{
 	return this.http.post<any>('https://pre-api.stafflinepro.com/v5/api/accounts/signin', {userName: userName, password: password})
-		.pipe(map(user => { 
+		.pipe(tap(user => { 
 			if(user.code == 200)
 			{
 				localStorage.setItem('currentUser', JSON.stringify(user['content']['dataList'][0]));
 			}
-			return user;
+			//return user;
 		
 		}))
   }
@@ -28,9 +29,18 @@ export class LoginService {
 	return true;
   }
   
-  getUserProfile()
-  {
+  getUserProfile():Observable<any>{
 	  return this.http.get<any>('https://pre-api.stafflinepro.com/v5/api/users')
-		.pipe(map(user => { return user; }));
+		.pipe(
+		tap(user => {  }),
+		//retry(5)
+		//catchError(error => {console.log('eeee',error); return {};})
+		);
   }
+  
+  updatUserProfile(user):Observable<any> {
+	  return this.http.put<any>('https://pre-api.stafflinepro.com/v5/api/users', user)
+  }
+  
+  
 }

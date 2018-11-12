@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { first } from 'rxjs/operators';
-import { Router, ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from '../_service/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,11 @@ import { Router, ActivatedRoute } from '@angular/router'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService : LoginService, private router : Router) { }
+  constructor(
+	private loginService : LoginService, 
+	private alertService : AlertService,
+	private router : Router
+	) { }
   
   loginForm = new FormGroup({
 	userName : new FormControl(''),
@@ -37,7 +42,10 @@ export class LoginComponent implements OnInit {
 		.pipe(first())
 		.subscribe( user => {
 				if(user.code == 200)
+				{
+					this.alertService.success('Login successful', true);
 					this.router.navigate(['dashboard'])
+				}
 				else
 				{
 					console.log(user.code);

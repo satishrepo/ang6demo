@@ -1,4 +1,26 @@
 <p>
   user-profile works!
 </p>
-<div *ngIf="profile.empDetails">{{profile.empDetails.emailId}}</div>
+<div *ngIf="profile">
+	Email : {{profile.emailId}}<br>
+	First Name : {{profile.firstName}}<br>
+	Last Name : {{profile.lastName}}
+</div>
+
+
+<form [formGroup]="profileForm" (ngSubmit)="updateUser()">
+	
+
+  <div class="container">
+    <label for="uname"><b>First Name</b></label>
+    <input type="text" placeholder="First Name" name="firstName" formControlName="firstName">
+
+    <label for="lastName"><b>Last Name </b></label>
+    <input type="text" placeholder="Last Name" name="lastName" formControlName="lastName">
+
+    <button type="submit">Update</button>
+  </div>
+
+
+	
+</form>
