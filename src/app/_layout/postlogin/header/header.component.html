@@ -1,0 +1,5 @@
+<p >Welcome <span *ngIf="user.emailId">{{user.firstName |uppercase}} ! </span> <button (click)="logout()"> Logout </button></p>
+<!--<h2>This is Header after login</h2>-->
+<div>
+	<a [routerLink]="['/profile']">Profile</a> || <a [routerLink]="['/dashboard']">Dashboard</a>
+</div>

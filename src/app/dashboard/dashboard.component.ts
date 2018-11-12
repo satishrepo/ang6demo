@@ -18,11 +18,4 @@ export class DashboardComponent implements OnInit {
   }
   
   
-  
-  logout()
-  { 
-	if(this.loginService.logout())
-		this.router.navigate(['login']);
-  }
-
 }

@@ -12,6 +12,9 @@ import { AddHeaderInterceptor } from './header.interceptor';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AlertComponent } from './_directive/alert/alert.component';
+import { HeaderComponent } from './_layout/postlogin/header/header.component';
+import { FooterComponent } from './_layout/postlogin/footer/footer.component';
+import { LayoutComponent } from './_layout/postlogin/layout/layout.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { AlertComponent } from './_directive/alert/alert.component';
     LoginComponent,
     DashboardComponent,
     UserProfileComponent,
-    AlertComponent
+    AlertComponent,
+    HeaderComponent,
+    FooterComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
