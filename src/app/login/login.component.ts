@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   });
   submitted = false;
   formError:any = [];
+  point = 200;
 
   ngOnInit() {
   }

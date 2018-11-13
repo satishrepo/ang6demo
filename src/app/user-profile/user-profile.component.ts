@@ -5,6 +5,7 @@ import { first }  from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../_model/user';
 import { StorageService } from '../_service/storage.service';
+import { AlertService } from '../_service/alert.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,11 +18,15 @@ export class UserProfileComponent implements OnInit {
 	private router : Router, 
 	private loginService : LoginService,
 	private formBuilder : FormBuilder,
-	private storageService : StorageService
+	private storageService : StorageService,
+	private alertService : AlertService
 	) { }
 
   profile :  User;
   profileForm : FormGroup;
+  loading = false;
+  submitted = false;
+  point = 10;
   
   ngOnInit() {
 	this.getProfile();
@@ -50,18 +55,33 @@ export class UserProfileComponent implements OnInit {
   }
   
   updateUser() {
+	  this.submitted = true;
+	  if(this.profileForm.invalid)
+	  {
+		  return;
+	  }
+	  this.loading = true;
+	  
 	  let userData = {empDetails : this.profileForm.value};
 	  this.loginService.updatUserProfile(userData)
 		.pipe(first())
 		.subscribe( user => { 
 			//this.getProfile();
+			
 			this.profile.firstName = this.f.firstName.value;
 			this.profile.lastName = this.f.lastName.value;
+			
 			let _u = JSON.parse(localStorage.getItem('currentUser'));
 			_u.firstName = this.f.firstName.value;
 			_u.lastName = this.f.lastName.value;
-			//localStorage.setItem('currentUser', JSON.stringify(_u));
-			this.storageService.set('currentUser', _u)
+			
+			this.storageService.set('currentUser', _u);
+			this.alertService.success('Updated successfully', false);
+			
+			this.profileForm.reset();
+			this.loading = false;
+			this.submitted = false;
+			
 		},
 		error=> {
 			console.log(error)

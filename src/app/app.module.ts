@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddHeaderInterceptor } from './header.interceptor';
@@ -16,6 +16,8 @@ import { HeaderComponent } from './_layout/postlogin/header/header.component';
 import { FooterComponent } from './_layout/postlogin/footer/footer.component';
 import { LayoutComponent } from './_layout/postlogin/layout/layout.component';
 
+import { ProjectModule } from './project/project.module';
+import { ScrollComponent } from './_directive/scroll/scroll.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +28,16 @@ import { LayoutComponent } from './_layout/postlogin/layout/layout.component';
     AlertComponent,
     HeaderComponent,
     FooterComponent,
-    LayoutComponent
+    LayoutComponent,
+    ScrollComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
 	ReactiveFormsModule,
-	HttpClientModule
+	FormsModule,
+	HttpClientModule,
+	ProjectModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

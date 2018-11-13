@@ -1,12 +1,3 @@
-<p>
-  user-profile works!
-</p>
-<div *ngIf="profile">
-	Email : {{profile.emailId}}<br>
-	First Name : {{profile.firstName}}<br>
-	Last Name : {{profile.lastName}}
-</div>
-
 
 <form [formGroup]="profileForm" (ngSubmit)="updateUser()">
 	
@@ -14,13 +5,23 @@
   <div class="container">
     <label for="uname"><b>First Name</b></label>
     <input type="text" placeholder="First Name" name="firstName" formControlName="firstName">
+	<span *ngIf="submitted && f.firstName.errors && f.firstName.errors.required">Required</span>
 
     <label for="lastName"><b>Last Name </b></label>
     <input type="text" placeholder="Last Name" name="lastName" formControlName="lastName">
+	<span *ngIf="submitted && f.lastName.errors && f.lastName.errors.required">Required</span>
 
-    <button type="submit">Update</button>
+    <button type="submit" [disabled]="loading">Update</button>
   </div>
-
-
 	
 </form>
+
+
+<div *ngIf="profile">
+	Email : {{profile.emailId}}<br>
+	First Name : {{profile.firstName}}<br>
+	Last Name : {{profile.lastName}}<br>
+	<span *ngIf="point">{{point}}</span>
+</div>
+
+<app-scroll [(point)]="point"></app-scroll>
