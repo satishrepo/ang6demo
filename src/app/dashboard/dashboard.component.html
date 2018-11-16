@@ -1,2 +1,19 @@
 <p> this is dashboard </p>
 
+<div style="display: inline-block; width:30%">
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+		  [options]="chartOptions"></canvas>
+</div>
+
+
+<div id="chart-container" style="display: inline-block; width:30%">
+	<canvas baseChart 
+          [chartType]="chartType"
+          [data]="chartData"
+          [labels]="chartLabels"
+          [options]="chartOptions1">
+  </canvas>
+</div>

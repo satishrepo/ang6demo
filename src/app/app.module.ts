@@ -19,6 +19,13 @@ import { LayoutComponent } from './_layout/postlogin/layout/layout.component';
 import { ProjectModule } from './project/project.module';
 import { ScrollComponent } from './_directive/scroll/scroll.component';
 
+import { ChartsModule } from 'ng2-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FiltersComponent } from './filters/filters.component';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +36,9 @@ import { ScrollComponent } from './_directive/scroll/scroll.component';
     HeaderComponent,
     FooterComponent,
     LayoutComponent,
-    ScrollComponent
+    ScrollComponent,
+    FiltersComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +46,10 @@ import { ScrollComponent } from './_directive/scroll/scroll.component';
 	ReactiveFormsModule,
 	FormsModule,
 	HttpClientModule,
-	ProjectModule
+	ProjectModule,
+	ChartsModule,
+	BrowserAnimationsModule,
+	
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

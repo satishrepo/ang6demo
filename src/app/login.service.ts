@@ -42,5 +42,11 @@ export class LoginService {
 	  return this.http.put<any>('https://pre-api.stafflinepro.com/v5/api/users', user)
   }
   
+  getTableData(filterObj, currentPage):Observable<any> {
+	  let params = Object.keys(filterObj);
+	  let qString = params.map( i => i + '='+filterObj[i]);
+	  return this.http.get<any>('http://paytel.compunnel.com/api/Report/Daily/facility'+ '?' +qString.join('&')+'&currentPage=' + currentPage)
+  }
+  
   
 }

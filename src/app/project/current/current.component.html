@@ -1,3 +1,47 @@
 <p>
   current works!
 </p>
+
+
+<div class="list">
+		<ul>
+			<li *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }">{{ item }}</li>
+		</ul>
+
+		<pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+
+
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
+
+    <ng-container matColumnDef="facilityName">
+        <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+        <mat-cell *matCellDef="let lesson">{{lesson.facilityName}}</mat-cell>
+    </ng-container>
+	
+	<ng-container matColumnDef="facilityId">
+        <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+        <mat-cell *matCellDef="let lesson">{{lesson.facilityId}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="music">
+        <mat-header-cell *matHeaderCellDef>Music</mat-header-cell>
+        <mat-cell class="description-cell"
+                  *matCellDef="let lesson">{{lesson.contentUsage.music}}</mat-cell>
+
+    </ng-container>
+
+    <ng-container matColumnDef="movies">
+        <mat-header-cell *matHeaderCellDef>Movies</mat-header-cell>
+        <mat-cell class="duration-cell"
+                  *matCellDef="let lesson">{{lesson.contentUsage.movies}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
+
+<mat-paginator #paginator [length]="8" [pageSize]="2" [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons (page)="getUpdate($event)" ></mat-paginator>

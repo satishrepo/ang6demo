@@ -36,6 +36,10 @@ export class UserProfileComponent implements OnInit {
 	});
   }
   
+  upPoint(p) {
+	  this.point = p;
+  }
+  
   get f() {return this.profileForm.controls; }
   
   getProfile() {

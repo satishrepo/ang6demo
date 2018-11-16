@@ -5,6 +5,10 @@ import { PastComponent } from './past/past.component';
 import { LayoutComponent } from '../_layout/postlogin/layout/layout.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard }  from '../auth.guard';
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, 
+         MatSortModule, MatTableModule } from "@angular/material";
+		 
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const projectRoutes : Routes = [
 	{
@@ -18,7 +22,9 @@ const projectRoutes : Routes = [
 @NgModule({
   imports: [
     CommonModule, 
-	RouterModule.forChild(projectRoutes)
+	RouterModule.forChild(projectRoutes),
+	MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule,
+	NgxPaginationModule
   ],
   declarations: [CurrentComponent, PastComponent],
   //exports : [RouterModule]

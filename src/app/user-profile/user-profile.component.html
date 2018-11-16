@@ -24,4 +24,4 @@
 	<span *ngIf="point">{{point}}</span>
 </div>
 
-<app-scroll [(point)]="point"></app-scroll>
+<app-scroll [point]="point" (newpoint)="upPoint($event)"></app-scroll>
