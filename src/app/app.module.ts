@@ -21,7 +21,7 @@ import { ScrollComponent } from './_directive/scroll/scroll.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FiltersComponent } from './filters/filters.component';
+
 
 
 
@@ -37,7 +37,7 @@ import { FiltersComponent } from './filters/filters.component';
     FooterComponent,
     LayoutComponent,
     ScrollComponent,
-    FiltersComponent,
+    
     
   ],
   imports: [

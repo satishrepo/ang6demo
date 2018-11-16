@@ -16,6 +16,12 @@ export class CurrentComponent implements OnInit {
 
 	dataList = [];
 	
+	years = [
+		{value: 'steak-0', viewValue: 'Steak'},
+		{value: 'pizza-1', viewValue: 'Pizza'},
+		{value: 'tacos-2', viewValue: 'Tacos'}
+	  ];
+	
   constructor(private loginService : LoginService) { }
   
    displayedColumns= ["facilityName", "facilityId", "music", "movies"];
@@ -48,7 +54,7 @@ export class CurrentComponent implements OnInit {
 			this.dataSource.paginator = this.paginator;
 	   },error => {
 			console.log(error)
-	   }
+	   })
    }
    
    getUpdate(event) {
